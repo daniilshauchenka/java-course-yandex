@@ -1,45 +1,38 @@
 # Blog backend (Spring)
-Backend of a blog web application implemented using Spring Framework
+Backend of a blog web application implemented using Spring Boot
 
 # Tech stack:
 * Java 21
-* Spring Framework 6 (Core, WebMVC, JDBC)
-* JDBC (no ORM)
+* Spring Boot 3.2
+* Spring Web (REST)
+* Spring JDBC (no ORM)
 * H2  
 * Liquibase
 * JUnit 5 + Mockito 
 * MockMvc
-* Gradle 
-* Tomcat
+* Maven
+* Embedded Tomcat
 
 ## Build
 ```bash
-./gradlew build
+mvn clean package
 ```
 
 ## Tests
 ```bash 
-./gradlew test
+mvn test
 ```
 
 ## Run Application (Tomcat)
-### Build WAR:
+### via Maven:
 ```bash
-./gradlew build
+mvn spring-boot:run
 ```
-### Locate WAR file:
-``` 
-build/libs/*.war
+### manually:
+```bash
+java -jar target/spring-boot-blog-0.0.1-SNAPSHOT.jar
 ```
 
-### Copy it to:
-```
-tomcat/webapps/
-```
-### Start Tomcat:
-```
-bin/startup.sh
-```
 ### Application will be available at:
 ```
 http://localhost:8080
