@@ -8,13 +8,15 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import ru.yandex.config.TestConfig;
 import ru.yandex.model.entity.PostEntity;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = TestConfig.class)
+
+@JdbcTest
+@Import({TagRepository.class, PostRepository.class, PostTagRepository.class})
 class TagRepositoryTest {
 
     @Autowired

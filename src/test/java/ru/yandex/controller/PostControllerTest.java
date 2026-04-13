@@ -17,6 +17,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -30,26 +33,14 @@ import ru.yandex.model.dto.PostPageResponse;
 import ru.yandex.service.PostService;
 
 
-@ExtendWith(MockitoExtension.class)
-@Import(GlobalExceptionHandler.class)
+@WebMvcTest(PostController.class)
 class PostControllerTest {
 
-
+    @Autowired
     private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private PostService postService;
-
-    @InjectMocks
-    private PostController postController;
-
-    @BeforeEach
-    void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(postController)
-                .setControllerAdvice(new GlobalExceptionHandler())
-                .setMessageConverters(new MappingJackson2HttpMessageConverter())
-                .build();
-    }
 
     @Test
     void getPosts_shouldReturnList() throws Exception {
